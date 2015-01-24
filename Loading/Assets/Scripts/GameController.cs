@@ -7,9 +7,9 @@ public class GameController : MonoBehaviour
 	public static GameController Instance;
 	public GameObject player;
 	public GameObject currentRoom;
-	public SpriteRenderer backGround_sad;
-	public SpriteRenderer backGround_normal;
-	public SpriteRenderer backGround_happy;
+	private SpriteRenderer backGround_sad;
+	private SpriteRenderer backGround_normal;
+	private SpriteRenderer backGround_happy;
 	public int maxRooms;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
@@ -20,6 +20,9 @@ public class GameController : MonoBehaviour
 	void Awake() 
 	{
 		Instance = this;
+		backGround_sad.sprite = (Texture) Resources.Load("background_sad.png");
+		backGround_normal.sprite.texture = (Texture)Resources.Load("background_normal.png");
+		backGround_happy.sprite.texture = (Texture) Resources.Load("background_happy.png");
 	}
 
 	// Use this for initialization
@@ -31,7 +34,7 @@ public class GameController : MonoBehaviour
 		player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 
 		currentRoomNum = 0;
-		sanity = 5;
+		sanity = 1;
 		for(int i = 1; i < maxRooms-1; i++)
 			roomsLeft.Add(i);
 		int activeRoom = Random.Range(0, roomsLeft.Count-1);
@@ -58,7 +61,10 @@ public class GameController : MonoBehaviour
 	void Update () 
 	{
 		if (sanity <= 0)
+		{
+			Application.LoadLevel("GameOver");
 			Debug.Log ("End Game");//end the game 
+		}
 	}
 
 	void AddSanity(int toChange)
@@ -110,13 +116,14 @@ public class GameController : MonoBehaviour
 			Debug.Log(activeRoom);
 			currentActiveRoomNum = roomsLeft[activeRoom];
 			roomsLeft.RemoveAt(activeRoom);
-			for(int i = 0; i<roomsLeft.Count; i++)
+			for(int i = 0; i < roomsLeft.Count; i++)
 				Debug.Log(roomsLeft[i]);
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 		else
 		{
 			Debug.Log ("END!!!!");
+			Application.LoadLevel("WinScreen");
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}

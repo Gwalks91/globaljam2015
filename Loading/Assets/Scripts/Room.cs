@@ -7,6 +7,10 @@ public class Room : MonoBehaviour
 	public GameObject EndPoint;
 	public GameObject StartPoint;
 
+	public SpriteRenderer backGround_sad;
+	public SpriteRenderer backGround_normal;
+	public SpriteRenderer backGround_happy;
+
 	public string mRoomName;
 	private bool misActive;
 
