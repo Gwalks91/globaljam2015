@@ -7,12 +7,13 @@ public class EnemyInteraction : MonoBehaviour
 	private int mnumChoices;
 	private List<string> mtexts;
 	private Dictionary<string, int> mchoiceCost;
-	private Dictionary<string, string> mchoiceImage;
+    private Dictionary<string, string> mchoiceImage;
+    private Animator cameraAnimator;
 
 	// Use this for initialization
-	void Start () 
-	{
-
+	void Start ()
+    {
+        cameraAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
 	}
 
 	public void init()
@@ -58,6 +59,8 @@ public class EnemyInteraction : MonoBehaviour
                     string text = mtexts[left - 1];
                     b.onClick.AddListener(() => onButtonClick(text));
                     left--;
+
+                    cameraAnimator.SetBool("ZoomIn", true);
                 }
                 else
                 {
@@ -85,6 +88,8 @@ public class EnemyInteraction : MonoBehaviour
                 b.enabled = false;
                 b.onClick.RemoveAllListeners();
                 b.GetComponentInChildren<Text>().enabled = false;
+
+                cameraAnimator.SetBool("ZoomIn", false);
             }
 		}
 

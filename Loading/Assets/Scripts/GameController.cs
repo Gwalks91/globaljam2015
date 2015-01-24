@@ -156,6 +156,7 @@ public class GameController : MonoBehaviour
                     b.onClick.AddListener(() => onEODButtonClick());
                 }
             }
+
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}
