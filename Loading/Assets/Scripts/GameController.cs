@@ -96,14 +96,13 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log("Message got here");
 		sanity += toChange;
-
+		Debug.Log("Sanity: " + sanity);
 	}
 
 	void changeRoom()
 	{
 		if(currentRoomNum == maxRooms-1)
 		{
-			Debug.Log("Reset room");
 			reset();
 		}
 		else
@@ -128,7 +127,10 @@ public class GameController : MonoBehaviour
 			roomsLeft.RemoveAt(activeRoom);
 			for(int i = 0; i<roomsLeft.Count; i++)
 				Debug.Log(roomsLeft[i]);
-
+			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+		else
+		{
             inEndOfDay = true;
             PlayerMovement.Instance.SendMessage("togglePause");
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
@@ -144,11 +146,6 @@ public class GameController : MonoBehaviour
 
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
-		else
-		{
-			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-		}
-
 		if(sanity > 5)
 		{
 			backGround_sad.renderer.enabled = false;

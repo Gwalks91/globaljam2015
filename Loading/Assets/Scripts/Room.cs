@@ -65,7 +65,6 @@ public class Room : MonoBehaviour
 
 	public Vector3 getStartPos()
 	{
-		Debug.Log ("Start Pos: " + StartPoint.transform.position);
 		return StartPoint.transform.position;
 	}
 }
