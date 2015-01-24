@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AssetLoader.cs" />
+     <Compile Include="Assets\Scripts\AssetsLoader.cs" />
      <Compile Include="Assets\Scripts\EndPoint.cs" />
      <Compile Include="Assets\Scripts\EnemyInteraction.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />

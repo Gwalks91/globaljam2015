@@ -7,9 +7,9 @@ public class GameController : MonoBehaviour
 	public static GameController Instance;
 	public GameObject player;
 	public GameObject currentRoom;
-	private SpriteRenderer backGround_sad;
-	private SpriteRenderer backGround_normal;
-	private SpriteRenderer backGround_happy;
+	public SpriteRenderer backGround_sad;
+	public SpriteRenderer backGround_normal;
+	public SpriteRenderer backGround_happy;
 	public int maxRooms;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
@@ -20,9 +20,6 @@ public class GameController : MonoBehaviour
 	void Awake() 
 	{
 		Instance = this;
-		backGround_sad.sprite = (Texture) Resources.Load("background_sad.png");
-		backGround_normal.sprite.texture = (Texture)Resources.Load("background_normal.png");
-		backGround_happy.sprite.texture = (Texture) Resources.Load("background_happy.png");
 	}
 
 	// Use this for initialization
