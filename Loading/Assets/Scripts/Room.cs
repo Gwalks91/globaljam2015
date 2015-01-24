@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
 	public string mRoomName;
 	private bool misActive;
 
-	public void init(bool isActive, int roomName)
+	public void init(bool isActive, string roomName)
 	{
 		//background = gameObject.AddComponent<SpriteRenderer>();
 		//background.sprite = (Sprite)Instantiate(Resources.Load("back1", typeof(Sprite)));
@@ -33,7 +33,7 @@ public class Room : MonoBehaviour
 		}
 		*/
 		misActive = isActive;
-		mRoomName = "room" + roomName;
+		mRoomName = roomName;
 		if(!misActive)
 		{
 			Debug.Log ("Made an inactive room: " + roomName);

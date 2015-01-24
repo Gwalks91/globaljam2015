@@ -140,10 +140,7 @@ public class GameController : MonoBehaviour
 			roomsLeft.RemoveAt(activeRoom);
 			for(int i = 0; i<roomsLeft.Count; i++)
 				Debug.Log(roomsLeft[i]);
-			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-		}
-		else
-		{
+
             inEndOfDay = true;
             PlayerMovement.Instance.SendMessage("togglePause");
             foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
@@ -157,6 +154,10 @@ public class GameController : MonoBehaviour
                 }
             }
 
+			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+		else
+		{
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}
