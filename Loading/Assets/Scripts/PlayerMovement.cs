@@ -33,6 +33,12 @@ public class PlayerMovement : MonoBehaviour {
 	public void togglePause()
 	{
 		pause = !pause;
+
+        if (pause)
+        {
+            // make it stop
+            rigidbody.velocity = new Vector3(0, 0, 0);
+        }
 	}
 
 
