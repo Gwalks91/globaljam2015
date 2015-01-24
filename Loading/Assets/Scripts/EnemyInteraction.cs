@@ -65,7 +65,8 @@ public class EnemyInteraction : MonoBehaviour
 
 	void onButtonClick(string buttonName)
 	{
-		Debug.Log(buttonName);
+		Debug.Log("This is causing an error: " + buttonName);
+		Debug.Log("This is causing an error: " + mchoiceCost[buttonName]);
 		GameController.Instance.SendMessage("AddSanity", mchoiceCost[buttonName]);
 		PlayerMovement.Instance.SendMessage("togglePause");
 		Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
@@ -73,6 +74,7 @@ public class EnemyInteraction : MonoBehaviour
 		{
 			b.image.enabled = false;
 			b.enabled = false;
+			b.onClick.RemoveAllListeners();
 			b.GetComponentInChildren<Text>().enabled = false;
 		}
 
