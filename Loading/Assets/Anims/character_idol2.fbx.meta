@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 10c354d42dda2684a83334984088f95f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: head
+    100004: joints
+    100006: l_arm
+    100008: l_elbow
+    100010: l_foot
+    100012: l_hand
+    100014: l_hip
+    100016: l_knee
+    100018: l_shoulder
+    100020: l_toe
+    100022: neck
+    100024: pelvis
+    100026: polySurface2
+    100028: r_arm
+    100030: r_elbow
+    100032: r_elbow 1
+    100034: r_foot
+    100036: r_hip
+    100038: r_knee
+    100040: r_shoulder
+    100042: r_toe
+    100044: spine
+    100046: upper_body
+    400000: //RootNode
+    400002: head
+    400004: joints
+    400006: l_arm
+    400008: l_elbow
+    400010: l_foot
+    400012: l_hand
+    400014: l_hip
+    400016: l_knee
+    400018: l_shoulder
+    400020: l_toe
+    400022: neck
+    400024: pelvis
+    400026: polySurface2
+    400028: r_arm
+    400030: r_elbow
+    400032: r_elbow 1
+    400034: r_foot
+    400036: r_hip
+    400038: r_knee
+    400040: r_shoulder
+    400042: r_toe
+    400044: spine
+    400046: upper_body
+    4300000: polySurface2
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: polySurface2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joints
+        weight: 1
+      - path: joints/l_arm
+        weight: 1
+      - path: joints/l_arm/l_shoulder
+        weight: 1
+      - path: joints/l_arm/l_shoulder/l_elbow
+        weight: 1
+      - path: joints/l_arm/l_shoulder/l_elbow/l_hand
+        weight: 1
+      - path: joints/neck
+        weight: 1
+      - path: joints/neck/head
+        weight: 1
+      - path: joints/r_arm
+        weight: 1
+      - path: joints/r_arm/r_shoulder
+        weight: 1
+      - path: joints/r_arm/r_shoulder/r_elbow
+        weight: 1
+      - path: joints/r_arm/r_shoulder/r_elbow/r_elbow 1
+        weight: 1
+      - path: joints/spine
+        weight: 1
+      - path: joints/spine/pelvis
+        weight: 1
+      - path: joints/spine/pelvis/l_hip
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee/l_foot
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee/l_foot/l_toe
+        weight: 1
+      - path: joints/spine/pelvis/r_hip
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee/r_foot
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee/r_foot/r_toe
+        weight: 1
+      - path: joints/upper_body
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

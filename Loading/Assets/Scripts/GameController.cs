@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	private int currentActiveRoomNum;
 	private int sanity;
 	private List<int> roomsLeft;
+    private bool inEndOfDay;
 
 	
 	void Awake() 
@@ -45,13 +46,35 @@ public class GameController : MonoBehaviour
 		backGround_normal.renderer.enabled = true;
 		backGround_happy.renderer.enabled = false;
 		//backGround_normal = (Texture)Resources.Load ("background_normal.png");
-		foreach(Button b in GameObject.FindObjectsOfType(typeof(Button)) as Button[])
-		{
-			b.enabled = false;
-			b.image.enabled = false;
-			b.GetComponentInChildren<Text>().enabled = false;
-			//b.renderer.enabled = false;
-		}
+        foreach(GameObject o in GameObject.FindGameObjectsWithTag("UserChoice"))
+        {
+            Button b = o.GetComponent<Button>();
+            if (b  != null)
+            {
+                b.enabled = false;
+                b.image.enabled = false;
+                b.GetComponentInChildren<Text>().enabled = false;
+            }
+        }
+
+        foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
+        {
+            Button b = o.GetComponent<Button>();
+            if (b != null)
+            {
+                b.enabled = false;
+                b.image.enabled = false;
+            }
+        }
+        //foreach(Button b in GameObject.FindObjectsOfType(typeof(Button)) as Button[])
+        //{
+        //    b.enabled = false;
+        //    b.image.enabled = false;
+        //    b.GetComponentInChildren<Text>().enabled = false;
+        //    //b.renderer.enabled = false;
+        //}
+
+        inEndOfDay = false;
 	}
 	
 	// Update is called once per frame
@@ -59,6 +82,11 @@ public class GameController : MonoBehaviour
 	{
 		if (sanity <= 0)
 			Debug.Log ("End Game");//end the game 
+
+        if (inEndOfDay)
+        {
+
+        }
 	}
 
 	void AddSanity(int toChange)
@@ -112,12 +140,41 @@ public class GameController : MonoBehaviour
 			roomsLeft.RemoveAt(activeRoom);
 			for(int i = 0; i<roomsLeft.Count; i++)
 				Debug.Log(roomsLeft[i]);
+
+            inEndOfDay = true;
+            PlayerMovement.Instance.SendMessage("togglePause");
+            foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
+            {
+                Button b = o.GetComponent<Button>();
+                if (b != null)
+                {
+                    b.enabled = true;
+                    b.image.enabled = true;
+                    b.onClick.AddListener(() => onEODButtonClick());
+                }
+            }
+
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 		else
 		{
-			Debug.Log ("END!!!!");
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}
+
+    private void onEODButtonClick()
+    {
+        PlayerMovement.Instance.SendMessage("togglePause");
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("EOD");
+        foreach(GameObject o in gos)
+        {
+            Button b = o.GetComponent<Button>();
+            if(b != null)
+            {
+                b.image.enabled = false;
+                b.enabled = false;
+                b.onClick.RemoveAllListeners();
+            }
+        }
+    }
 }
