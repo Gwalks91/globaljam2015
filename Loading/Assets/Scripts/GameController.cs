@@ -81,7 +81,10 @@ public class GameController : MonoBehaviour
 	void Update () 
 	{
 		if (sanity <= 0)
+		{
 			Debug.Log ("End Game");//end the game 
+			Application.LoadLevel("GameOver");
+		}
 
         if (inEndOfDay)
         {
@@ -93,34 +96,19 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log("Message got here");
 		sanity += toChange;
-		if(sanity > 5)
-		{
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = true;
-		}
-		else if(sanity <= 5 && sanity > 2)
-		{
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = true;
-			backGround_happy.renderer.enabled = false;
-		}
-		else
-		{
-			backGround_sad.renderer.enabled = true;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = false;
-		}
+
 	}
 
 	void changeRoom()
 	{
 		if(currentRoomNum == maxRooms-1)
 		{
+			Debug.Log("Reset room");
 			reset();
 		}
 		else
 		{
+			Debug.Log("Switching to room: " + currentRoomNum);
 			currentRoomNum++;
 			currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, "room" + currentRoomNum);
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
@@ -158,6 +146,24 @@ public class GameController : MonoBehaviour
             }
 
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+		if(sanity > 5)
+		{
+			backGround_sad.renderer.enabled = false;
+			backGround_normal.renderer.enabled = false;
+			backGround_happy.renderer.enabled = true;
+		}
+		else if(sanity <= 5 && sanity > 2)
+		{
+			backGround_sad.renderer.enabled = false;
+			backGround_normal.renderer.enabled = true;
+			backGround_happy.renderer.enabled = false;
+		}
+		else
+		{
+			backGround_sad.renderer.enabled = true;
+			backGround_normal.renderer.enabled = false;
+			backGround_happy.renderer.enabled = false;
 		}
 	}
 

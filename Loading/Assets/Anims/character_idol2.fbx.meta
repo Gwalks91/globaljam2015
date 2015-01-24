@@ -70,7 +70,81 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joints
+        weight: 1
+      - path: joints/l_arm
+        weight: 1
+      - path: joints/l_arm/l_shoulder
+        weight: 1
+      - path: joints/l_arm/l_shoulder/l_elbow
+        weight: 1
+      - path: joints/l_arm/l_shoulder/l_elbow/l_hand
+        weight: 1
+      - path: joints/neck
+        weight: 1
+      - path: joints/neck/head
+        weight: 1
+      - path: joints/r_arm
+        weight: 1
+      - path: joints/r_arm/r_shoulder
+        weight: 1
+      - path: joints/r_arm/r_shoulder/r_elbow
+        weight: 1
+      - path: joints/r_arm/r_shoulder/r_elbow/r_elbow 1
+        weight: 1
+      - path: joints/spine
+        weight: 1
+      - path: joints/spine/pelvis
+        weight: 1
+      - path: joints/spine/pelvis/l_hip
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee/l_foot
+        weight: 1
+      - path: joints/spine/pelvis/l_hip/l_knee/l_foot/l_toe
+        weight: 1
+      - path: joints/spine/pelvis/r_hip
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee/r_foot
+        weight: 1
+      - path: joints/spine/pelvis/r_hip/r_knee/r_foot/r_toe
+        weight: 1
+      - path: joints/upper_body
+        weight: 1
+      - path: polySurface2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
