@@ -3,8 +3,15 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	public static PlayerMovement Instance;
 	public float maxSpeed = 10f;
+	private bool pause = false;
 	private bool facingRight = true;
+
+	void Awake()
+	{
+		Instance = this;
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -15,9 +22,17 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		float move = Input.GetAxis("Horizontal");
+		if(!pause)
+		{
+			float move = Input.GetAxis("Horizontal");
 
-		rigidbody.velocity = new Vector3(move * maxSpeed, rigidbody.velocity.y, 0);
+			rigidbody.velocity = new Vector3(move * maxSpeed, rigidbody.velocity.y, 0);
+		}
+	}
+
+	public void togglePause()
+	{
+		pause = !pause;
 	}
 
 

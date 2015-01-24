@@ -39,19 +39,43 @@ public class EnemyInteraction : MonoBehaviour
 	{
 		Debug.Log("Player hit the AI");
 		int left = mnumChoices;
-		Text[] t = GameObject.FindObjectsOfType(typeof(Text)) as Text[];
-		foreach(Text text in t)
+		PlayerMovement.Instance.SendMessage("togglePause");
+		Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
+		foreach(Button b in t)
 		{
 			if(left > 0)
 			{
-				text.text = mtexts[left-1];
+				b.enabled = true;
+				b.image.enabled = true;
+				b.GetComponentInChildren<Text>().enabled = true;
+				b.GetComponentInChildren<Text>().text = mtexts[left-1];
+				Debug.Log (mtexts[left-1]);
+				Debug.Log (left);
+				string text = mtexts[left-1];
+				b.onClick.AddListener(() => onButtonClick(text));
 				left--;
 			}
 			else
 			{
-				text.text = "";
+				b.GetComponentInChildren<Text>().text = "";
 			}
 		}
 		//GameController.Instance.SendMessage("AddSanity");
+	}
+
+	void onButtonClick(string buttonName)
+	{
+		Debug.Log(buttonName);
+		GameController.Instance.SendMessage("AddSanity", mchoiceCost[buttonName]);
+		PlayerMovement.Instance.SendMessage("togglePause");
+		Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
+		foreach(Button b in t)
+		{
+			b.image.enabled = false;
+			b.enabled = false;
+			b.GetComponentInChildren<Text>().enabled = false;
+		}
+
+
 	}
 }

@@ -19,13 +19,15 @@ public class Room : MonoBehaviour
 		{
 			Debug.Log ("Made an inactive room: " + roomName);
 			AI.SetActive(false);
+			AI.renderer.enabled = false;
 		}
 		else
 		{
 			Debug.Log ("Made an active room: " + roomName);
+			AI.renderer.enabled = true;
 			AI.SetActive(true);
-			AI.GetComponent<EnemyInteraction>().init ();
-			AI.GetComponent<LoadXmlData>().init(mRoomName);
+			AI.GetComponentInChildren<EnemyInteraction>().init ();
+			AI.GetComponentInChildren<LoadXmlData>().init(mRoomName);
 		}
 	}
 

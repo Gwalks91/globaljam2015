@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour 
@@ -6,9 +7,9 @@ public class GameController : MonoBehaviour
 	public static GameController Instance;
 	public GameObject player;
 	public GameObject currentRoom;
-	public Sprite backGround_sad;
-	public Sprite backGround_normal;
-	public Sprite backGround_happy;
+	public SpriteRenderer backGround_sad;
+	public SpriteRenderer backGround_normal;
+	public SpriteRenderer backGround_happy;
 	public int maxRooms;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
@@ -39,6 +40,18 @@ public class GameController : MonoBehaviour
 		roomsLeft.RemoveAt(activeRoom);
 		for(int i = 0; i<roomsLeft.Count; i++)
 			Debug.Log(roomsLeft[i]);
+
+		backGround_sad.renderer.enabled = false;
+		backGround_normal.renderer.enabled = true;
+		backGround_happy.renderer.enabled = false;
+		//backGround_normal = (Texture)Resources.Load ("background_normal.png");
+		foreach(Button b in GameObject.FindObjectsOfType(typeof(Button)) as Button[])
+		{
+			b.enabled = false;
+			b.image.enabled = false;
+			b.GetComponentInChildren<Text>().enabled = false;
+			//b.renderer.enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -52,6 +65,24 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log("Message got here");
 		sanity += toChange;
+		if(sanity > 5)
+		{
+			backGround_sad.renderer.enabled = false;
+			backGround_normal.renderer.enabled = false;
+			backGround_happy.renderer.enabled = true;
+		}
+		else if(sanity <= 5 && sanity > 2)
+		{
+			backGround_sad.renderer.enabled = false;
+			backGround_normal.renderer.enabled = true;
+			backGround_happy.renderer.enabled = false;
+		}
+		else
+		{
+			backGround_sad.renderer.enabled = true;
+			backGround_normal.renderer.enabled = false;
+			backGround_happy.renderer.enabled = false;
+		}
 	}
 
 	void changeRoom()
