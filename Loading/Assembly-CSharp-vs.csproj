@@ -49,9 +49,12 @@
      <Compile Include="Assets\Scripts\EndPoint.cs" />
      <Compile Include="Assets\Scripts\EnemyInteraction.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\LoadXmlData.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Room.cs" />
      <Compile Include="Assets\ShowSkin.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Rooms.xml" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Users/Grant/Desktop/Game Projects/globaljam2015/Loading/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

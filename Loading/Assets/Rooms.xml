@@ -1,0 +1,11 @@
+<Rooms>
+    <Room roomName='room2' numChoices='2'>
+        <Choice text='Ignore him' score='-1' finalImage='room2sad.png'/>
+        <Choice text='Help him' score='1' finalImage='happy.png'/>
+    </Room>
+    <Room roomName='room1' numChoices='3'>
+        <Choice text='Pull lever' score='-1' finalImage='sad.png'/>
+        <Choice text='Leave lever' score='1' finalImage='happy.png'/>
+        <Choice text='Blah' score='0' finalImage='blah.png' />
+    </Room>
+</Rooms>
