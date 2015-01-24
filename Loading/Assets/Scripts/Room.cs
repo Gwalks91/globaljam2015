@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Room : MonoBehaviour 
@@ -7,18 +8,32 @@ public class Room : MonoBehaviour
 	public GameObject EndPoint;
 	public GameObject StartPoint;
 
-	public SpriteRenderer backGround_sad;
-	public SpriteRenderer backGround_normal;
-	public SpriteRenderer backGround_happy;
+	public SpriteRenderer background;
 
 	public string mRoomName;
 	private bool misActive;
 
-	public void init(bool isActive, string roomName)
+	public void init(bool isActive, int roomName)
 	{
-
+		//background = gameObject.AddComponent<SpriteRenderer>();
+		//background.sprite = (Sprite)Instantiate(Resources.Load("back1", typeof(Sprite)));
+		//backGround = (Image)GameObject.FindObjectOfType(typeof(Image));
+		/*
+		switch (GameController.Instance.currentState)
+		{
+		case SANITY.Happy:
+			backGround.sprite = (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Happy);
+			break;
+		case SANITY.Normal:
+			backGround.sprite = (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Norm);
+			break;
+		case SANITY.Sad:
+			backGround.sprite= (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Sad);
+			break;
+		}
+		*/
 		misActive = isActive;
-		mRoomName = roomName;
+		mRoomName = "room" + roomName;
 		if(!misActive)
 		{
 			Debug.Log ("Made an inactive room: " + roomName);

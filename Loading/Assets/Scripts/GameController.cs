@@ -2,15 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+public enum SANITY
+{
+	Happy = 0,
+	Normal = 1,
+	Sad = 2
+}
+
 public class GameController : MonoBehaviour 
 {
 	public static GameController Instance;
 	public GameObject player;
 	public GameObject currentRoom;
-	public SpriteRenderer backGround_sad;
-	public SpriteRenderer backGround_normal;
-	public SpriteRenderer backGround_happy;
+	//public SpriteRenderer backGround_sad;
+	//public SpriteRenderer backGround_normal;
+	//public SpriteRenderer backGround_happy;
 	public int maxRooms;
+	public SANITY currentState;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
 	private int sanity;
@@ -26,7 +34,7 @@ public class GameController : MonoBehaviour
 	void Start () 
 	{
 		roomsLeft = new List<int>();
-		currentRoom.GetComponent<Room>().init(false, "room0");
+		currentRoom.GetComponent<Room>().init(false, 0);
 		player = GameObject.FindGameObjectWithTag("Player");
 		player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 
@@ -41,9 +49,9 @@ public class GameController : MonoBehaviour
 		for(int i = 0; i<roomsLeft.Count; i++)
 			Debug.Log(roomsLeft[i]);
 
-		backGround_sad.renderer.enabled = false;
-		backGround_normal.renderer.enabled = true;
-		backGround_happy.renderer.enabled = false;
+		//backGround_sad.renderer.enabled = false;
+		//backGround_normal.renderer.enabled = true;
+		//backGround_happy.renderer.enabled = false;
 		//backGround_normal = (Texture)Resources.Load ("background_normal.png");
 		foreach(Button b in GameObject.FindObjectsOfType(typeof(Button)) as Button[])
 		{
@@ -52,6 +60,8 @@ public class GameController : MonoBehaviour
 			b.GetComponentInChildren<Text>().enabled = false;
 			//b.renderer.enabled = false;
 		}
+
+		currentState = SANITY.Normal;
 	}
 	
 	// Update is called once per frame
@@ -68,24 +78,7 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log("Message got here");
 		sanity += toChange;
-		if(sanity > 5)
-		{
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = true;
-		}
-		else if(sanity <= 5 && sanity > 2)
-		{
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = true;
-			backGround_happy.renderer.enabled = false;
-		}
-		else
-		{
-			backGround_sad.renderer.enabled = true;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = false;
-		}
+
 	}
 
 	void changeRoom()
@@ -97,7 +90,7 @@ public class GameController : MonoBehaviour
 		else
 		{
 			currentRoomNum++;
-			currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, "room" + currentRoomNum);
+			currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, currentRoomNum);
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}
@@ -122,6 +115,19 @@ public class GameController : MonoBehaviour
 			Debug.Log ("END!!!!");
 			Application.LoadLevel("WinScreen");
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+
+		if(sanity > 5)
+		{
+			currentState = SANITY.Happy;
+		}
+		else if(sanity <= 5 && sanity > 2)
+		{
+			currentState = SANITY.Normal;
+		}
+		else
+		{
+			currentState = SANITY.Sad;
 		}
 	}
 }

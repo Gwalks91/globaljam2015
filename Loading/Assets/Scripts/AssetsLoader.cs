@@ -22,9 +22,15 @@ public enum BlockType
 
 public class AssetsLoader : MonoBehaviour
 {
+	public static AssetsLoader Instance;
 	[SerializeField]
 	private GameObject[] blockPrefabs;
-	
+
+	void Awake() 
+	{
+		Instance = this;
+	}
+
 	public GameObject BlockSprites(BlockType blockType) {
 		return blockPrefabs[(int)blockType];
 	}
