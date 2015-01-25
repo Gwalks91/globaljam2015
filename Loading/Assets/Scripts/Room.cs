@@ -21,6 +21,10 @@ public class Room : MonoBehaviour
 		{
 			GameObject.Find("bridge").renderer.enabled = true;
 		}
+		if(roomName == "room0")
+		{
+			GameObject.Find("housePoly").renderer.enabled = true;
+		}
 		//background = gameObject.AddComponent<SpriteRenderer>();
 		//background.sprite = (Sprite)Instantiate(Resources.Load("back1", typeof(Sprite)));
 		//backGround = (Image)GameObject.FindObjectOfType(typeof(Image));

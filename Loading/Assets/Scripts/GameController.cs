@@ -103,6 +103,7 @@ public class GameController : MonoBehaviour
 	void changeRoom()
 	{
 		GameObject.Find("bridge").renderer.enabled = false;
+		GameObject.Find("housePoly").renderer.enabled = false;
 		if(currentRoomNum == maxRooms-1)
 		{
 			reset();
@@ -119,7 +120,7 @@ public class GameController : MonoBehaviour
 	void reset()
 	{
 		//Show end image
-
+		GameObject.Find("housePoly").renderer.enabled = true;
 		currentRoomNum = 0;
 		if(roomsLeft.Count > 0)
 		{
