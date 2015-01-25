@@ -30,20 +30,20 @@ public class EnemyInteraction : MonoBehaviour
         cameraAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
 
         AudioSource[] ass = GetComponents<AudioSource>();
-        //BGM = ass[0];
-        //BGM.clip = trainBGM;
-        //BGM.loop = true;
-        //BGM.playOnAwake = false;
+        BGM = ass[0];
+        BGM.clip = trainBGM;
+        BGM.loop = true;
+        BGM.playOnAwake = false;
 
-        //trainSE = ass[1];
-        //trainSE.clip = screamOnApprroach;
-        //trainSE.loop = false;
-        //trainSE.playOnAwake = false;
+        trainSE = ass[1];
+        trainSE.clip = screamOnApprroach;
+        trainSE.loop = false;
+        trainSE.playOnAwake = false;
 
-        //screenSE = ass[2];
-        //screenSE.clip = trainLoop;
-        //screenSE.loop = false;
-        //screenSE.playOnAwake = false;
+        screenSE = ass[2];
+        screenSE.clip = trainLoop;
+        screenSE.loop = false;
+        screenSE.playOnAwake = false;
 	}
 
 	public void init()
@@ -140,7 +140,7 @@ public class EnemyInteraction : MonoBehaviour
 			}
 			//GameController.Instance.SendMessage("AddSanity");
 
-            if (mexplanation.Contains("Train Coming!")) // room 2 and we are checking 
+            if (mexplanation.Contains("young girl")) // room 2 and we are checking 
             {
                 BGM.Play();
                 trainSE.PlayOneShot(screamOnApprroach);
@@ -172,11 +172,11 @@ public class EnemyInteraction : MonoBehaviour
             }
         }
 
-        if (mexplanation.Contains("Train Coming!"))
+        if (mexplanation.Contains("young girl"))
         {
-            //BGM.Stop();
-            //trainSE.PlayOneShot(lever);
-            //screenSE.PlayOneShot(crash);
+            BGM.Stop();
+            trainSE.PlayOneShot(lever);
+            screenSE.PlayOneShot(crash);
         }
 
 	
