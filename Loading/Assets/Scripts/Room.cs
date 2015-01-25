@@ -32,12 +32,15 @@ public class Room : MonoBehaviour
 		{
 			GameObject.Find("train").renderer.enabled = true;
 			GameObject.Find("tracks").renderer.enabled = true;
+			GameObject.Find("Station").renderer.enabled = true;
 		}
 		if(roomName == "room3")
 		{
 			GameObject.Find("Store").renderer.enabled = true;
 		}
-
+		AI2.SetActive(false);
+		AI1.SetActive(false);
+		AI3.SetActive(false);
 		misActive = isActive;
 		mRoomName = roomName;
 		if(!misActive)

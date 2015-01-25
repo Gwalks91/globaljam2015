@@ -30,20 +30,20 @@ public class EnemyInteraction : MonoBehaviour
         cameraAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
 
         AudioSource[] ass = GetComponents<AudioSource>();
-        BGM = ass[0];
-        BGM.clip = trainBGM;
-        BGM.loop = true;
-        BGM.playOnAwake = false;
+        //BGM = ass[0];
+        //BGM.clip = trainBGM;
+        //BGM.loop = true;
+        //BGM.playOnAwake = false;
 
-        trainSE = ass[1];
-        trainSE.clip = screamOnApprroach;
-        trainSE.loop = false;
-        trainSE.playOnAwake = false;
+        //trainSE = ass[1];
+        //trainSE.clip = screamOnApprroach;
+        //trainSE.loop = false;
+        //trainSE.playOnAwake = false;
 
-        screenSE = ass[2];
-        screenSE.clip = trainLoop;
-        screenSE.loop = false;
-        screenSE.playOnAwake = false;
+        //screenSE = ass[2];
+        //screenSE.clip = trainLoop;
+        //screenSE.loop = false;
+        //screenSE.playOnAwake = false;
 	}
 
 	public void init()
@@ -138,6 +138,7 @@ public class EnemyInteraction : MonoBehaviour
 					t.enabled = true;
 				}
 			}
+			GameObject.Find("TextBackGround").GetComponent<Image>().enabled = true;
 			//GameController.Instance.SendMessage("AddSanity");
 
             if (mexplanation.Contains("young girl")) // room 2 and we are checking 
@@ -174,9 +175,9 @@ public class EnemyInteraction : MonoBehaviour
 
         if (mexplanation.Contains("young girl"))
         {
-            BGM.Stop();
-            trainSE.PlayOneShot(lever);
-            screenSE.PlayOneShot(crash);
+            //BGM.Stop();
+            //trainSE.PlayOneShot(lever);
+            //screenSE.PlayOneShot(crash);
         }
 
 	
@@ -184,6 +185,7 @@ public class EnemyInteraction : MonoBehaviour
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;
+		GameObject.Find("TextBackGround").GetComponent<Image>().enabled = false;
 		
 	}
 }
