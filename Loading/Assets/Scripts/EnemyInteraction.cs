@@ -140,7 +140,7 @@ public class EnemyInteraction : MonoBehaviour
 			}
 			//GameController.Instance.SendMessage("AddSanity");
 
-            if (mexplanation.Contains("Train Coming!")) // room 2 and we are checking 
+            if (mexplanation.Contains("young girl")) // room 2 and we are checking 
             {
                 BGM.Play();
                 trainSE.PlayOneShot(screamOnApprroach);
@@ -172,7 +172,7 @@ public class EnemyInteraction : MonoBehaviour
             }
         }
 
-        if (mexplanation.Contains("Train Coming!"))
+        if (mexplanation.Contains("young girl"))
         {
             BGM.Stop();
             trainSE.PlayOneShot(lever);
