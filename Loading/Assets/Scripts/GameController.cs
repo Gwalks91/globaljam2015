@@ -74,6 +74,7 @@ public class GameController : MonoBehaviour
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;
+		GameObject.Find("TextBackGround").GetComponent<Image>().enabled = false;
 
 		foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
         {
@@ -95,6 +96,7 @@ public class GameController : MonoBehaviour
 		GameObject.Find("Store").renderer.enabled = false;
 		GameObject.Find("train").renderer.enabled = false;
 		GameObject.Find("tracks").renderer.enabled = false;
+		GameObject.Find("Station").renderer.enabled = false;
         inEndOfDay = false;
 
         AudioSource[] ass = GetComponents<AudioSource>();
@@ -145,6 +147,7 @@ public class GameController : MonoBehaviour
 		GameObject.Find("Store").renderer.enabled = false;
 		GameObject.Find("train").renderer.enabled = false;
 		GameObject.Find("tracks").renderer.enabled = false;
+		GameObject.Find("Station").renderer.enabled = false;
 		if(currentRoomNum == maxRooms-1)
 		{
 			reset();
