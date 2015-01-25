@@ -5,6 +5,9 @@ using System.Collections;
 public class Room : MonoBehaviour 
 {
 	public GameObject AI;
+	public GameObject AI1;
+	public GameObject AI2;
+	public GameObject AI3;
 	public GameObject EndPoint;
 	public GameObject StartPoint;
 	
@@ -25,6 +28,11 @@ public class Room : MonoBehaviour
 		{
 			GameObject.Find("housePoly").renderer.enabled = true;
 		}
+		if(roomName == "room2")
+		{
+			GameObject.Find("train").renderer.enabled = true;
+			GameObject.Find("tracks").renderer.enabled = true;
+		}
 		if(roomName == "room3")
 		{
 			GameObject.Find("Store").renderer.enabled = true;
@@ -35,16 +43,46 @@ public class Room : MonoBehaviour
 		if(!misActive)
 		{
 			Debug.Log ("Made an inactive room: " + roomName);
-			AI.SetActive(false);
-			AI.renderer.enabled = false;
+			AI2.SetActive(false);
+			AI1.SetActive(false);
+			AI3.SetActive(false);
+			//GameObject.Find("body1").renderer.enabled = false;
+			//GameObject.Find("body2").renderer.enabled = false;
+			//GameObject.Find("body3").renderer.enabled = false;
 		}
 		else
 		{
+
 			Debug.Log ("Made an active room: " + roomName);
-			AI.renderer.enabled = true;
-			AI.SetActive(true);
-			AI.GetComponentInChildren<EnemyInteraction>().init ();
-			AI.GetComponentInChildren<LoadXmlData>().init(mRoomName);
+			//AI.renderer.enabled = true;
+			if(roomName == "room1")
+			{
+				AI1.SetActive(true);
+				//AI1.renderer.enabled = true;
+				AI2.SetActive(false);
+				AI3.SetActive(false);
+				AI1.GetComponentInChildren<EnemyInteraction>().init ();
+				AI1.GetComponentInChildren<LoadXmlData>().init(mRoomName);
+			}
+			else if(roomName == "room2")
+			{
+				AI2.SetActive(true);
+				//AI2.renderer.enabled = true;
+				AI1.SetActive(false);
+				AI3.SetActive(false);
+				AI2.GetComponentInChildren<EnemyInteraction>().init ();
+				AI2.GetComponentInChildren<LoadXmlData>().init(mRoomName);
+			}
+			else if(roomName == "room3")
+			{
+				AI3.SetActive(true);
+				//AI3.renderer.enabled = true;
+				AI1.SetActive(false);
+				AI2.SetActive(false);
+				AI3.GetComponentInChildren<EnemyInteraction>().init ();
+				AI3.GetComponentInChildren<LoadXmlData>().init(mRoomName);
+			}
+
 		}
 
 		switch (GameController.Instance.currentMood)

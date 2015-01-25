@@ -6,9 +6,9 @@
         <Choice id='0' text='Help him' score='-1' finalImage='News Paper/BridgeCriminalLives'/>
         
         <Explanation id='1'>A very nervous looking man stares over the edge of the bridge.  </Explanation>
-        <Choice id='1' text='Push him.' score='-4' finalImage='News Paper/BrideHumanitarianDead'/>
-        <Choice id='1' text='Ignore him.' score='-1' finalImage='News Paper/BrideHumanitarianDead'/>
-        <Choice id='1' text='Help him.' score='3' finalImage='News Paper/BrideGoodLives'/>
+        <Choice id='1' text='Push him.' score='-4' finalImage='News Paper/BridgeHumanitarianDead'/>
+        <Choice id='1' text='Ignore him.' score='-1' finalImage='News Paper/BridgeHumanitarianDead'/>
+        <Choice id='1' text='Help him.' score='3' finalImage='News Paper/BridgeGoodLives'/>
     </Room>
     <Room roomName='room2' numChoices='2'  numIds='1'>
         <Explanation id='0'> There is a young girl stuck on the other tracks but the current track is incomplete. The breaks are out and there are 5 workers on board. </Explanation>
