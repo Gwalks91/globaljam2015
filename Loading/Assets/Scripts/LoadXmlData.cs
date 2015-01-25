@@ -31,14 +31,23 @@ public class LoadXmlData : MonoBehaviour // the Class
 				Debug.Log(roomInfo.Attributes["roomName"].Value);
 				Debug.Log(mroomName);
 				gameObject.GetComponent<EnemyInteraction>().setNumChoice(int.Parse(roomInfo.Attributes["numChoices"].Value));
+				gameObject.GetComponent<EnemyInteraction>().setnumIds(int.Parse(roomInfo.Attributes["numIds"].Value));
 				XmlNodeList roomcontent = roomInfo.ChildNodes;
 				
 				foreach (XmlNode roomsItens in roomcontent) // levels itens nodes.
 				{
-					Debug.Log(roomsItens.Attributes["text"].Value);
-					gameObject.GetComponent<EnemyInteraction>().addString(roomsItens.Attributes["text"].Value,
+					if(roomsItens.Name == "Choice")
+					{
+						Debug.Log(roomsItens.Attributes["text"].Value);
+						gameObject.GetComponent<EnemyInteraction>().addString(int.Parse(roomsItens.Attributes["id"].Value),
+																			roomsItens.Attributes["text"].Value,
 					                                                      int.Parse(roomsItens.Attributes["score"].Value),
 					                                                      roomsItens.Attributes["finalImage"].Value);
+					}
+					if(roomsItens.Name == "Explanation")
+					{
+						gameObject.GetComponent<EnemyInteraction>().setExplanation(roomsItens.InnerText);
+					}
 					//Set up the differnet UI texts with strings and scores
 				}
 			}
