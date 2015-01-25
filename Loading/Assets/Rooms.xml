@@ -1,22 +1,26 @@
 <Rooms>
     <Room roomName='room1' numChoices='3' numIds='2'>
+        <Explanation id='0'>A locally knows drug dealer asks you for 10$ to help him get back on his feet. </Explanation>
         <Choice id='0' text='Push him' score='-2' finalImage='room1sad.png'/>
         <Choice id='0' text='Ignore him' score='-1' finalImage='room1sad.png'/>
         <Choice id='0' text='Help him' score='1' finalImage='happy.png'/>
         
+        <Explanation id='1'>A locally knows drug dealer asks you for 10$ to help him get back on his feet </Explanation>
         <Choice id='1' text='Push him.' score='-2' finalImage='room1sad.png'/>
         <Choice id='1' text='Ignore him.' score='-1' finalImage='room1sad.png'/>
         <Choice id='1' text='Help him.' score='1' finalImage='happy.png'/>
     </Room>
     <Room roomName='room2' numChoices='2'  numIds='2'>
+        <Explanation id='0'>A locally knows drug dealer asks you for 10$ to help him get back on his feet. </Explanation>
         <Choice id='0' text='Pull lever' score='-1' finalImage='sad.png'/>
         <Choice id='0' text='Leave lever' score='1' finalImage='happy.png'/>
         
+        <Explanation id='1'>A locally knows drug dealer asks you for 10$ to help him get back on his feet </Explanation>
         <Choice id='1' text='Pull lever.' score='-1' finalImage='sad.png'/>
         <Choice id='1' text='Leave lever.' score='1' finalImage='happy.png'/>
     </Room>
     <Room roomName='room3' numChoices='2' numIds='1'>
-        <Explanation>A locally knows drug dealer asks you for 10$ to help him get back on his feet. </Explanation>
+        <Explanation id='0'>A locally knows drug dealer asks you for 10$ to help him get back on his feet. </Explanation>
         <Choice id='0' text='Give Money' score='-1' finalImage='sad.png'/>
         <Choice id='0' text='Walk away' score='1' finalImage='happy.png'/>
     </Room>
