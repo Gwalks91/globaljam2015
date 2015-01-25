@@ -1,73 +1,24 @@
 fileFormatVersion: 2
-guid: ab9116d9b8e47354d8383fcb14f72fc1
+guid: f55b4ce9b30149946b010cc954427a9e
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: head
-    100004: joints
-    100006: l_arm
-    100008: l_elbow
-    100010: l_foot
-    100012: l_hand
-    100014: l_hip
-    100016: l_knee
-    100018: l_shoulder
-    100020: l_toe
-    100022: neck
-    100024: pelvis
-    100026: polySurface2
-    100028: r_arm
-    100030: r_elbow
-    100032: r_elbow 1
-    100034: r_foot
-    100036: r_hip
-    100038: r_knee
-    100040: r_shoulder
-    100042: r_toe
-    100044: spine
-    100046: upper_body
-    100048: polySurface3
-    100050: polySurface4
-    100052: polySurface5
-    100054: transform1
-    100056: transform2
-    100058: transform3
+    100002: pCube1
+    100004: pCube2
+    100006: polySurface1
+    100008: transform1
+    100010: transform2
     400000: //RootNode
-    400002: head
-    400004: joints
-    400006: l_arm
-    400008: l_elbow
-    400010: l_foot
-    400012: l_hand
-    400014: l_hip
-    400016: l_knee
-    400018: l_shoulder
-    400020: l_toe
-    400022: neck
-    400024: pelvis
-    400026: polySurface2
-    400028: r_arm
-    400030: r_elbow
-    400032: r_elbow 1
-    400034: r_foot
-    400036: r_hip
-    400038: r_knee
-    400040: r_shoulder
-    400042: r_toe
-    400044: spine
-    400046: upper_body
-    400048: polySurface3
-    400050: polySurface4
-    400052: polySurface5
-    400054: transform1
-    400056: transform2
-    400058: transform3
-    4300000: polySurface2
-    4300002: polySurface5
+    400002: pCube1
+    400004: pCube2
+    400006: polySurface1
+    400008: transform1
+    400010: transform2
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
     9500000: //RootNode
-    13700000: polySurface2
-    13700002: polySurface5
   materials:
     importMaterials: 1
     materialName: 0
@@ -87,7 +38,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .75
+    globalScale: 2
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
