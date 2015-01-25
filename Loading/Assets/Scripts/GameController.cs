@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 	public SpriteRenderer backGround_sad;
 	public SpriteRenderer backGround_normal;
 	public SpriteRenderer backGround_happy;
+    public AudioClip newsSound;
 	public int maxRooms;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
@@ -123,6 +124,7 @@ public class GameController : MonoBehaviour
 		if(roomsLeft.Count > 0)
 		{
 			inEndOfDay = true;
+            audio.PlayOneShot(newsSound);
 			PlayerMovement.Instance.SendMessage("togglePause");
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
 			{
