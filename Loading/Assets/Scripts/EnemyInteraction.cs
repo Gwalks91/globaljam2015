@@ -61,7 +61,8 @@ public class EnemyInteraction : MonoBehaviour
 	{
 		if(obj.gameObject.tag == "Player")
 		{
-			int chosenId = 1; // Random.Range(0, numIds-1);
+			Random.seed = (Time.frameCount);
+			int chosenId = Random.Range(0, numIds-1);
 
 			Debug.Log("Player hit the AI: " + numIds);
 			int left = mnumChoices;
