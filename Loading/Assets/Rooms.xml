@@ -1,5 +1,6 @@
 <Rooms>
-    <Room roomName='room1' numChoices='2'>
+    <Room roomName='room1' numChoices='3'>
+        <Choice text='Push him' score='-2' finalImage='room1sad.png'/>
         <Choice text='Ignore him' score='-1' finalImage='room1sad.png'/>
         <Choice text='Help him' score='1' finalImage='happy.png'/>
     </Room>
