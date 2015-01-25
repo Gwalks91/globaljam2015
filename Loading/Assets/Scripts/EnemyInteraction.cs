@@ -6,6 +6,7 @@ public class EnemyInteraction : MonoBehaviour
 {
 	private int mnumChoices;
 	private List<string> mtexts;
+	private Dictionary<string, int> mexpIds;
 	private Dictionary<string, int> mtextIds;
 	private Dictionary<string, int> mchoiceCost;
     private Dictionary<string, string> mchoiceImage;
@@ -22,10 +23,13 @@ public class EnemyInteraction : MonoBehaviour
 	public void init()
 	{
 		mtexts = new List<string>();
+		mexpIds = new Dictionary<string, int>();
 		mtextIds = new Dictionary<string, int>();
 		mchoiceCost = new Dictionary<string, int>();
 		mchoiceImage = new Dictionary<string, string>();
 		mexplanation = "";
+
+        //GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 	}
 
 	public void setNumChoice(int numChoices)
@@ -33,9 +37,9 @@ public class EnemyInteraction : MonoBehaviour
 		mnumChoices = numChoices;
 	}
 
-	public void setExplanation(string explanation)
+	public void setExplanation(string explanation, int id)
 	{
-		mexplanation = explanation;
+		mexpIds.Add(explanation,id);
 	}
 
 	public void setnumIds(int ids)
@@ -56,12 +60,13 @@ public class EnemyInteraction : MonoBehaviour
 	{
 		if(obj.gameObject.tag == "Player")
 		{
+			Random.seed = (int)Time.realtimeSinceStartup;
 			int chosenId = Random.Range(0, numIds-1);
 
 			Debug.Log("Player hit the AI: " + numIds);
 			int left = mnumChoices;
 			PlayerMovement.Instance.SendMessage("togglePause");
-	        //Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
+
 	        GameObject[] gos = GameObject.FindGameObjectsWithTag("UserChoice");
 			foreach(GameObject o in gos)
 			{
@@ -95,11 +100,16 @@ public class EnemyInteraction : MonoBehaviour
 	                }
 	            }
 			}
-			if(mexplanation.Length > 0)
+			foreach(string str in mexpIds.Keys)
 			{
-				Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
-				t.text = mexplanation;
-				t.enabled = true;
+				Debug.Log (str);
+				if(mexpIds[str] == chosenId)
+				{
+	                //GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = true;
+					Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
+					t.text = str;
+					t.enabled = true;
+				}
 			}
 			//GameController.Instance.SendMessage("AddSanity");
 		}
@@ -125,7 +135,9 @@ public class EnemyInteraction : MonoBehaviour
 
                 cameraAnimator.SetBool("ZoomIn", false);
             }
-		}
+        }
+	
+        GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;

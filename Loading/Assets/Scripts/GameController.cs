@@ -83,6 +83,7 @@ public class GameController : MonoBehaviour
         //    //b.renderer.enabled = false;
         //}
 		GameObject.Find("bridge").renderer.enabled = false;
+		GameObject.Find("Store").renderer.enabled = false;
         inEndOfDay = false;
 
         AudioSource[] ass = GetComponents<AudioSource>();
@@ -125,6 +126,7 @@ public class GameController : MonoBehaviour
 	{
 		GameObject.Find("bridge").renderer.enabled = false;
 		GameObject.Find("housePoly").renderer.enabled = false;
+		GameObject.Find("Store").renderer.enabled = false;
 		if(currentRoomNum == maxRooms-1)
 		{
 			reset();

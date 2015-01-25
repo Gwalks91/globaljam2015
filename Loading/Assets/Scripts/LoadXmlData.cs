@@ -46,7 +46,8 @@ public class LoadXmlData : MonoBehaviour // the Class
 					}
 					if(roomsItens.Name == "Explanation")
 					{
-						gameObject.GetComponent<EnemyInteraction>().setExplanation(roomsItens.InnerText);
+						gameObject.GetComponent<EnemyInteraction>().setExplanation(roomsItens.InnerText,
+																	int.Parse(roomsItens.Attributes["id"].Value));
 					}
 					//Set up the differnet UI texts with strings and scores
 				}
