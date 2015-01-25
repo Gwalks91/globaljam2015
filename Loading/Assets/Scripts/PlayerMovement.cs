@@ -6,10 +6,9 @@ public class PlayerMovement : MonoBehaviour {
 	public static PlayerMovement Instance;
 	public float maxSpeed = 10f;
 	private bool pause = false;
-	private bool facingRight = true;
-	private bool previousFace = true;
 	private bool isWalking = false;
 	private Animator animator;
+	private float timeMoving;
 
 	void Awake()
 	{
@@ -26,22 +25,26 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		float move = Input.GetAxis("Horizontal");
+		if (move == 0) {
+			isWalking = false;
+			timeMoving = timeMoving / (float)1.5;
+			if (audio.isPlaying)
+					audio.Stop();
+		}
+		animator.SetBool("Walking",isWalking);
+		animator.SetFloat ("timeMoving", timeMoving);
 		if(!pause)
 		{
-			float move = Input.GetAxis("Horizontal");
-
 			rigidbody.velocity = new Vector3(move * maxSpeed, rigidbody.velocity.y, 0);
-			previousFace = facingRight;
 			if (move != 0){
 				isWalking = true;
-				if (move > 0)
-					facingRight = true;
-				else facingRight = false;
-				if (previousFace != facingRight)
-					transform.Rotate(0,180,0);
+				if (timeMoving < 0.95)
+					timeMoving += Time.deltaTime / (float)2;
+				if (!audio.isPlaying)
+					audio.Play();
+				Debug.Log ("Audio started playing.");
 			}
-			else isWalking = false;
-			animator.SetBool("Walking",isWalking);
 		}
 	}
 
