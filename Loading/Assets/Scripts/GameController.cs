@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     public AudioClip moodHappySound;
     public AudioClip moodSadSound;
     public int maxRooms;
+	public string newsPaperPath;
+
     private AudioSource newsSE;
     private AudioSource BGM;
 	private int currentRoomNum;
@@ -31,6 +33,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		newsPaperPath = "";
 		roomsLeft = new List<int>();
 		currentRoom.GetComponent<Room>().init(false, "room0");
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -122,6 +125,11 @@ public class GameController : MonoBehaviour
 		Debug.Log("Sanity: " + sanity);
 	}
 
+	public void changePath(string newPath)
+	{
+		newsPaperPath = newPath;
+	}
+
 	void changeRoom()
 	{
 		GameObject.Find("bridge").renderer.enabled = false;
@@ -157,7 +165,13 @@ public class GameController : MonoBehaviour
 				{
 					b.enabled = true;
 					b.image.enabled = true;
-					b.onClick.AddListener(() => onEODButtonClick());
+					Sprite newSprite = Resources.Load <Sprite>(newsPaperPath);
+					if (newSprite){
+						b.image.sprite = newSprite;
+					} else {
+						Debug.LogError("Sprite not found", this);
+					}
+					b.onClick.AddListener(() => onEODButtonClick(false));
 				}
 			}
 
@@ -182,12 +196,18 @@ public class GameController : MonoBehaviour
                 if (b != null)
                 {
                     b.enabled = true;
-                    b.image.enabled = true;
-                    b.onClick.AddListener(() => onEODButtonClick());
+					Sprite newSprite = Resources.Load <Sprite>(newsPaperPath);
+					if (newSprite){
+						b.image.sprite = newSprite;
+					} else {
+						Debug.LogError("Sprite not found", this);
+					}
+					b.image.enabled = true;
+                    b.onClick.AddListener(() => onEODButtonClick(true));
                 }
             }
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-			Application.LoadLevel("WinScreen");
+
 		}
 
 		if(sanity > 5)
@@ -222,7 +242,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-    private void onEODButtonClick()
+    private void onEODButtonClick(bool lastScene)
     {
         PlayerMovement.Instance.SendMessage("togglePause");
         GameObject[] gos = GameObject.FindGameObjectsWithTag("EOD");
@@ -236,5 +256,7 @@ public class GameController : MonoBehaviour
                 b.onClick.RemoveAllListeners();
             }
         }
+		if(lastScene)
+			Application.LoadLevel("WinScreen");
     }
 }

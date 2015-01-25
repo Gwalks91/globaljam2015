@@ -120,6 +120,7 @@ public class EnemyInteraction : MonoBehaviour
 		Debug.Log("This is causing an error: " + buttonName);
 		Debug.Log("This is causing an error: " + mchoiceCost[buttonName]);
 		GameController.Instance.SendMessage("AddSanity", mchoiceCost[buttonName]);
+		GameController.Instance.SendMessage("changePath", mchoiceImage[buttonName]);
 		PlayerMovement.Instance.SendMessage("togglePause");
         //Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
         GameObject[] gos = GameObject.FindGameObjectsWithTag("UserChoice");
