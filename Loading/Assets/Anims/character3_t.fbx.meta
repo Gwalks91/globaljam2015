@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: e957966ecb8d91b4f91bc6ab5ea85cea
-labels:
-- Character
+guid: 0561152f8aaa87f4e98aa5410ae0d705
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: body_2
+    100000: body2
     100002: //RootNode
     100004: head
     100006: joints
@@ -19,18 +17,17 @@ ModelImporter:
     100022: l_toe
     100024: neck
     100026: pelvis
-    100028: polySurface5
-    100030: r_arm
-    100032: r_elbow
-    100034: r_elbow 1
-    100036: r_foot
-    100038: r_hip
-    100040: r_knee
-    100042: r_shoulder
-    100044: r_toe
-    100046: spine
-    100048: upper_body
-    400000: body_2
+    100028: r_arm
+    100030: r_elbow
+    100032: r_elbow 1
+    100034: r_foot
+    100036: r_hip
+    100038: r_knee
+    100040: r_shoulder
+    100042: r_toe
+    100044: spine
+    100046: upper_body
+    400000: body2
     400002: //RootNode
     400004: head
     400006: joints
@@ -44,21 +41,19 @@ ModelImporter:
     400022: l_toe
     400024: neck
     400026: pelvis
-    400028: polySurface5
-    400030: r_arm
-    400032: r_elbow
-    400034: r_elbow 1
-    400036: r_foot
-    400038: r_hip
-    400040: r_knee
-    400042: r_shoulder
-    400044: r_toe
-    400046: spine
-    400048: upper_body
-    4300000: body_2
-    7400000: Take 001
+    400028: r_arm
+    400030: r_elbow
+    400032: r_elbow 1
+    400034: r_foot
+    400036: r_hip
+    400038: r_knee
+    400040: r_shoulder
+    400042: r_toe
+    400044: spine
+    400046: upper_body
+    4300000: body2
     9500000: //RootNode
-    13700000: body_2
+    13700000: body2
   materials:
     importMaterials: 1
     materialName: 0
