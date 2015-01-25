@@ -2,6 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+
+public enum STATUS
+{
+	normal = 0,
+	sad = 1, 
+	happy = 2
+}
+
 public class GameController : MonoBehaviour 
 {
 	public static GameController Instance;
@@ -15,6 +23,7 @@ public class GameController : MonoBehaviour
     public AudioClip moodSadSound;
     public int maxRooms;
 	public string newsPaperPath;
+	public STATUS currentMood;
 
     private AudioSource newsSE;
     private AudioSource BGM;
@@ -41,6 +50,7 @@ public class GameController : MonoBehaviour
 
 		currentRoomNum = 0;
 		sanity = 5;
+		currentMood = STATUS.normal;
 		for(int i = 1; i < maxRooms; i++)
 			roomsLeft.Add(i);
 		int activeRoom = Random.Range(0, roomsLeft.Count-1);
@@ -49,11 +59,7 @@ public class GameController : MonoBehaviour
 		roomsLeft.RemoveAt(activeRoom);
 		for(int i = 0; i<roomsLeft.Count; i++)
 			Debug.Log(roomsLeft[i]);
-
-		backGround_sad.renderer.enabled = false;
-		backGround_normal.renderer.enabled = true;
-		backGround_happy.renderer.enabled = false;
-		//backGround_normal = (Texture)Resources.Load ("background_normal.png");
+		
         foreach(GameObject o in GameObject.FindGameObjectsWithTag("UserChoice"))
         {
             Button b = o.GetComponent<Button>();
@@ -150,9 +156,34 @@ public class GameController : MonoBehaviour
 
 	void reset()
 	{
+		if(sanity > 5)
+		{
+			currentMood = STATUS.happy;
+			
+			BGM.Stop();
+			BGM.clip = moodHappySound;
+			BGM.Play();
+		}
+		else if(sanity <= 5 && sanity > 2)
+		{
+			currentMood = STATUS.normal;
+			
+			BGM.Stop();
+			BGM.clip = moodHappySound;
+			BGM.Play();
+		}
+		else
+		{
+			currentMood = STATUS.sad;
+			
+			BGM.Stop();
+			BGM.clip = moodSadSound;
+			BGM.Play();
+		}
 		//Show end image
-		GameObject.Find("housePoly").renderer.enabled = true;
+		//GameObject.Find("housePoly").renderer.enabled = true;
 		currentRoomNum = 0;
+		currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, "room" + currentRoomNum);
 		if(roomsLeft.Count > 0)
 		{
 			inEndOfDay = true;
@@ -210,36 +241,7 @@ public class GameController : MonoBehaviour
 
 		}
 
-		if(sanity > 5)
-		{
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = true;
 
-            BGM.Stop();
-            BGM.clip = moodHappySound;
-            BGM.Play();
-		}
-		else if(sanity <= 5 && sanity > 2)
-        {
-			backGround_sad.renderer.enabled = false;
-			backGround_normal.renderer.enabled = true;
-			backGround_happy.renderer.enabled = false;
-
-            BGM.Stop();
-            BGM.clip = moodHappySound;
-            BGM.Play();
-		}
-		else
-        {
-			backGround_sad.renderer.enabled = true;
-			backGround_normal.renderer.enabled = false;
-			backGround_happy.renderer.enabled = false;
-
-            BGM.Stop();
-            BGM.clip = moodSadSound;
-            BGM.Play();
-		}
 	}
 
     private void onEODButtonClick(bool lastScene)

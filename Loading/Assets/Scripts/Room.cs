@@ -12,6 +12,8 @@ public class Room : MonoBehaviour
 
 	public string mRoomName;
 	private bool misActive;
+	private string backgroundPath;
+	private Sprite newSprite;
 
 	public void init(bool isActive, string roomName)
 	{
@@ -27,23 +29,7 @@ public class Room : MonoBehaviour
 		{
 			GameObject.Find("Store").renderer.enabled = true;
 		}
-		//background = gameObject.AddComponent<SpriteRenderer>();
-		//background.sprite = (Sprite)Instantiate(Resources.Load("back1", typeof(Sprite)));
-		//backGround = (Image)GameObject.FindObjectOfType(typeof(Image));
-		/*
-		switch (GameController.Instance.currentState)
-		{
-		case SANITY.Happy:
-			backGround.sprite = (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Happy);
-			break;
-		case SANITY.Normal:
-			backGround.sprite = (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Norm);
-			break;
-		case SANITY.Sad:
-			backGround.sprite= (Sprite) AssetsLoader.Instance.BlockSprites(BlockType.Room1Sad);
-			break;
-		}
-		*/
+
 		misActive = isActive;
 		mRoomName = roomName;
 		if(!misActive)
@@ -60,14 +46,31 @@ public class Room : MonoBehaviour
 			AI.GetComponentInChildren<EnemyInteraction>().init ();
 			AI.GetComponentInChildren<LoadXmlData>().init(mRoomName);
 		}
-		/*
-		Sprite newSprite = Resources.Load <Sprite>(newsPaperPath);
+
+		switch (GameController.Instance.currentMood)
+		{
+		case STATUS.normal:
+			backgroundPath = "BackGrounds/" + mRoomName + "norm";
+			break;
+		case STATUS.sad:
+			backgroundPath = "BackGrounds/" + mRoomName + "sad";
+			break;
+		case STATUS.happy:
+			backgroundPath = "BackGrounds/" + mRoomName + "happy";
+			break;
+		default:
+			backgroundPath = "";
+			break;
+
+		}
+		newSprite = Resources.Load <Sprite>(backgroundPath);
 		if (newSprite){
-			b.image.sprite = newSprite;
+			GameObject temp = GameObject.Find("BackGround");
+			temp.GetComponent<SpriteRenderer>().sprite = newSprite;
 		} else {
 			Debug.LogError("Sprite not found", this);
 		}
-		*/
+
 	}
 
 	// Use this for initialization
