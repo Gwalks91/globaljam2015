@@ -14,10 +14,36 @@ public class EnemyInteraction : MonoBehaviour
 	private int numIds;
 	private string mexplanation;
 
+    public AudioClip trainBGM;
+    public AudioClip screamOnApprroach;
+    public AudioClip trainLoop;
+    public AudioClip lever;
+    public AudioClip crash;
+
+    private AudioSource BGM;
+    private AudioSource trainSE;
+    private AudioSource screenSE;
+
 	// Use this for initialization
 	void Start ()
     {
         cameraAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
+
+        AudioSource[] ass = GetComponents<AudioSource>();
+        BGM = ass[0];
+        BGM.clip = trainBGM;
+        BGM.loop = true;
+        BGM.playOnAwake = false;
+
+        trainSE = ass[1];
+        trainSE.clip = screamOnApprroach;
+        trainSE.loop = false;
+        trainSE.playOnAwake = false;
+
+        screenSE = ass[2];
+        screenSE.clip = trainLoop;
+        screenSE.loop = false;
+        screenSE.playOnAwake = false;
 	}
 
 	public void init()
@@ -113,6 +139,13 @@ public class EnemyInteraction : MonoBehaviour
 				}
 			}
 			//GameController.Instance.SendMessage("AddSanity");
+
+            if (mexplanation.Contains("Train Coming!")) // room 2 and we are checking 
+            {
+                BGM.Play();
+                trainSE.PlayOneShot(screamOnApprroach);
+                screenSE.PlayOneShot(trainLoop);
+            }
 		}
 	}
 
@@ -138,6 +171,14 @@ public class EnemyInteraction : MonoBehaviour
                 cameraAnimator.SetBool("ZoomIn", false);
             }
         }
+
+        if (mexplanation.Contains("Train Coming!"))
+        {
+            BGM.Stop();
+            trainSE.PlayOneShot(lever);
+            screenSE.PlayOneShot(crash);
+        }
+
 	
         //GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
