@@ -60,8 +60,9 @@ public class EnemyInteraction : MonoBehaviour
 	{
 		if(obj.gameObject.tag == "Player")
 		{
-			Random.seed = (int)Time.realtimeSinceStartup;
-			int chosenId = Random.Range(0, numIds-1);
+            System.Random r = new System.Random((int)System.DateTime.Now.Ticks);
+            int chosenId = r.Next(0, numIds);
+            //int chosenId = Random.Range(0, numIds-1);
 
 			Debug.Log("Player hit the AI: " + numIds);
 			int left = mnumChoices;
@@ -120,6 +121,7 @@ public class EnemyInteraction : MonoBehaviour
 		Debug.Log("This is causing an error: " + buttonName);
 		Debug.Log("This is causing an error: " + mchoiceCost[buttonName]);
 		GameController.Instance.SendMessage("AddSanity", mchoiceCost[buttonName]);
+		GameController.Instance.SendMessage("changePath", mchoiceImage[buttonName]);
 		PlayerMovement.Instance.SendMessage("togglePause");
         //Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
         GameObject[] gos = GameObject.FindGameObjectsWithTag("UserChoice");
@@ -137,7 +139,7 @@ public class EnemyInteraction : MonoBehaviour
             }
         }
 	
-        GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
+        //GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;

@@ -7,10 +7,8 @@ public class Room : MonoBehaviour
 	public GameObject AI;
 	public GameObject EndPoint;
 	public GameObject StartPoint;
-
-	public GameObject backgroundNorm;
-	public GameObject backgroundHappy;
-	public GameObject backgroundSad;
+	
+	public GameObject background;
 
 	public string mRoomName;
 	private bool misActive;
@@ -62,6 +60,14 @@ public class Room : MonoBehaviour
 			AI.GetComponentInChildren<EnemyInteraction>().init ();
 			AI.GetComponentInChildren<LoadXmlData>().init(mRoomName);
 		}
+		/*
+		Sprite newSprite = Resources.Load <Sprite>(newsPaperPath);
+		if (newSprite){
+			b.image.sprite = newSprite;
+		} else {
+			Debug.LogError("Sprite not found", this);
+		}
+		*/
 	}
 
 	// Use this for initialization
