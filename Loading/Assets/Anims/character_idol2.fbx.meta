@@ -27,6 +27,12 @@ ModelImporter:
     100042: r_toe
     100044: spine
     100046: upper_body
+    100048: polySurface3
+    100050: polySurface4
+    100052: polySurface5
+    100054: transform1
+    100056: transform2
+    100058: transform3
     400000: //RootNode
     400002: head
     400004: joints
@@ -51,10 +57,18 @@ ModelImporter:
     400042: r_toe
     400044: spine
     400046: upper_body
+    400048: polySurface3
+    400050: polySurface4
+    400052: polySurface5
+    400054: transform1
+    400056: transform2
+    400058: transform3
     4300000: polySurface2
+    4300002: polySurface5
     7400000: Take 001
     9500000: //RootNode
     13700000: polySurface2
+    13700002: polySurface5
   materials:
     importMaterials: 1
     materialName: 0
