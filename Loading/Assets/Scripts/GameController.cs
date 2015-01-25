@@ -47,13 +47,13 @@ public class GameController : MonoBehaviour
 		currentRoom.GetComponent<Room>().init(false, "room0");
 		player = GameObject.FindGameObjectWithTag("Player");
 		player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-
+		GameObject.Find("Rain").GetComponent<ParticleEmitter>().emit = false;
 		currentRoomNum = 0;
 		sanity = 5;
 		currentMood = STATUS.normal;
 		for(int i = 1; i < maxRooms; i++)
 			roomsLeft.Add(i);
-		int activeRoom = Random.Range(0, roomsLeft.Count-1);
+		int activeRoom = Random.Range(0, roomsLeft.Count);
 		Debug.Log(activeRoom);
 		currentActiveRoomNum = roomsLeft[activeRoom];
 		roomsLeft.RemoveAt(activeRoom);
@@ -200,13 +200,13 @@ public class GameController : MonoBehaviour
 					if (newSprite){
 						b.image.sprite = newSprite;
 					} else {
-						Debug.LogError("Sprite not found", this);
+						Debug.LogError("Sprite not found: " + newsPaperPath, this);
 					}
 					b.onClick.AddListener(() => onEODButtonClick(false));
 				}
 			}
 
-			int activeRoom = Random.Range(0, roomsLeft.Count-1);
+			int activeRoom = Random.Range(0, roomsLeft.Count);
 			Debug.Log(activeRoom);
 			currentActiveRoomNum = roomsLeft[activeRoom];
 			roomsLeft.RemoveAt(activeRoom);

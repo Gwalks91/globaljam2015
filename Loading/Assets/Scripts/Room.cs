@@ -50,15 +50,19 @@ public class Room : MonoBehaviour
 		switch (GameController.Instance.currentMood)
 		{
 		case STATUS.normal:
+			GameObject.Find("Rain").GetComponent<ParticleEmitter>().emit = false;
 			backgroundPath = "BackGrounds/" + mRoomName + "norm";
 			break;
 		case STATUS.sad:
+			GameObject.Find("Rain").GetComponent<ParticleEmitter>().emit = true;
 			backgroundPath = "BackGrounds/" + mRoomName + "sad";
 			break;
 		case STATUS.happy:
+			GameObject.Find("Rain").GetComponent<ParticleEmitter>().emit = false;
 			backgroundPath = "BackGrounds/" + mRoomName + "happy";
 			break;
 		default:
+			GameObject.Find("Rain").GetComponent<ParticleEmitter>().emit = false;
 			backgroundPath = "";
 			break;
 

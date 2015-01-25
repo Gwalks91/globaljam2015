@@ -1,29 +1,28 @@
 <Rooms>
     <Room roomName='room1' numChoices='3' numIds='2'>
-        <Explanation id='0'>A well dressed man is standing on the edge looking off the side. </Explanation>
-        <Choice id='0' text='Push him' score='-1' finalImage='News Paper/BridgeCriminalDead'/>
+        <Explanation id='0'>A well dressed man is standing near the edge of the bridge. </Explanation>
+        <Choice id='0' text='Push him' score='-4' finalImage='News Paper/BridgeCriminalDead'/>
         <Choice id='0' text='Ignore him' score='2' finalImage='News Paper/BridgeCriminalDead'/>
         <Choice id='0' text='Help him' score='-1' finalImage='News Paper/BridgeCriminalLives'/>
         
         <Explanation id='1'>A very nervous looking man stares over the edge of the bridge.  </Explanation>
-        <Choice id='1' text='Push him.' score='-3' finalImage='News Paper/BridgeHumanitarianDead'/>
-        <Choice id='1' text='Ignore him.' score='-1' finalImage='News Paper/BridgeHumanitarianDead'/>
-        <Choice id='1' text='Help him.' score='3' finalImage='News Paper/BridgeGoodLives'/>
+        <Choice id='1' text='Push him.' score='-4' finalImage='News Paper/BrideHumanitarianDead'/>
+        <Choice id='1' text='Ignore him.' score='-1' finalImage='News Paper/BrideHumanitarianDead'/>
+        <Choice id='1' text='Help him.' score='3' finalImage='News Paper/BrideGoodLives'/>
     </Room>
-    <Room roomName='room2' numChoices='3'  numIds='1'>
-        <Explanation id='0'>Train Coming! </Explanation>
-        <Choice id='0' text='Pull lever' score='-2' finalImage='News Paper/Train1DeadHero'/>
-        <Choice id='0' text='Push lever' score='-1' finalImage='News Paper/Train5DeadHero'/>
-        <Choice id='0' text='Leave lever' score='0' finalImage='News Paper/Train1DeadNoHero'/>
+    <Room roomName='room2' numChoices='2'  numIds='1'>
+        <Explanation id='0'> There is a young girl stuck on the other tracks but the current track is incomplete. The breaks are out and there are 5 workers on board. </Explanation>
+        <Choice id='0' text='Pull lever' score='-4' finalImage='News Paper/Train1DeadHero'/>
+        <Choice id='0' text='Leave lever' score='-2' finalImage='News Paper/Train5DeadHero'/>
        
     </Room>
     <Room roomName='room3' numChoices='2' numIds='2'> 
-        <Explanation id='0'>A man is sitting outside the store with a small sign that you cant quite read. He is asking for 10$. </Explanation>
+        <Explanation id='0'>A stressed man is sitting outside the store with a small sign that you can't quite read. He is asking for $10. </Explanation>
         <Choice id='0' text='Give Money' score='2' finalImage='News Paper/StoreGoodGive'/>
-        <Choice id='0' text='Walk away' score='-1' finalImage='News Paper/StoreGoodNoChoice'/>
+        <Choice id='0' text='Walk away' score='-4' finalImage='News Paper/StoreGoodNoChoice'/>
         
-        <Explanation id='1'>A man is standing nervously in front of the store asking for money. </Explanation>
-        <Choice id='1' text='Give Money.' score='-2' finalImage='News Paper/StoreMurderer'/>
+        <Explanation id='1'>A charming man in front of the store is asking for money. </Explanation>
+        <Choice id='1' text='Give Money.' score='-4' finalImage='News Paper/StoreMurderer'/>
         <Choice id='1' text='Walk away.' score='1' finalImage='News Paper/StoreMurderNoChoiceCaught'/>
     </Room>
     
