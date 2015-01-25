@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
 
 		currentRoomNum = 0;
 		sanity = 5;
-		for(int i = 1; i < maxRooms-1; i++)
+		for(int i = 1; i < maxRooms; i++)
 			roomsLeft.Add(i);
 		int activeRoom = Random.Range(0, roomsLeft.Count-1);
 		Debug.Log(activeRoom);
@@ -62,7 +62,11 @@ public class GameController : MonoBehaviour
             }
         }
 
-        foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
+		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
+		t.text = "";
+		t.enabled = false;
+
+		foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
         {
             Button b = o.GetComponent<Button>();
             if (b != null)
@@ -181,6 +185,7 @@ public class GameController : MonoBehaviour
                 }
             }
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+			Application.LoadLevel("WinScreen");
 		}
 
 		if(sanity > 5)

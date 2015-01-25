@@ -6,9 +6,12 @@ public class EnemyInteraction : MonoBehaviour
 {
 	private int mnumChoices;
 	private List<string> mtexts;
+	private Dictionary<string, int> mtextIds;
 	private Dictionary<string, int> mchoiceCost;
     private Dictionary<string, string> mchoiceImage;
     private Animator cameraAnimator;
+	private int numIds;
+	private string mexplanation;
 
 	// Use this for initialization
 	void Start ()
@@ -19,8 +22,10 @@ public class EnemyInteraction : MonoBehaviour
 	public void init()
 	{
 		mtexts = new List<string>();
+		mtextIds = new Dictionary<string, int>();
 		mchoiceCost = new Dictionary<string, int>();
 		mchoiceImage = new Dictionary<string, string>();
+		mexplanation = "";
 	}
 
 	public void setNumChoice(int numChoices)
@@ -28,47 +33,76 @@ public class EnemyInteraction : MonoBehaviour
 		mnumChoices = numChoices;
 	}
 
-	public void addString(string text, int value, string image)
+	public void setExplanation(string explanation)
+	{
+		mexplanation = explanation;
+	}
+
+	public void setnumIds(int ids)
+	{
+		numIds = ids;
+	}
+
+	public void addString(int id, string text, int value, string image)
 	{
 		mtexts.Add(text);
+		mtextIds.Add(text, id);
 		mchoiceCost.Add(text, value);
 		mchoiceImage.Add(text, image);
 	}
 
 	// Update is called once per frame
-	void OnTriggerEnter () 
+	void OnTriggerEnter (Collider obj) 
 	{
-		Debug.Log("Player hit the AI");
-		int left = mnumChoices;
-		PlayerMovement.Instance.SendMessage("togglePause");
-        //Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("UserChoice");
-		foreach(GameObject o in gos)
+		if(obj.gameObject.tag == "Player")
 		{
-            Button b = o.GetComponent<Button>();
-            if (b != null)
-            {
-                if (left > 0)
-                {
-                    b.enabled = true;
-                    b.image.enabled = true;
-                    b.GetComponentInChildren<Text>().enabled = true;
-                    b.GetComponentInChildren<Text>().text = mtexts[left - 1];
-                    Debug.Log(mtexts[left - 1]);
-                    Debug.Log(left);
-                    string text = mtexts[left - 1];
-                    b.onClick.AddListener(() => onButtonClick(text));
-                    left--;
+			int chosenId = Random.Range(0, numIds-1);
 
-                    cameraAnimator.SetBool("ZoomIn", true);
-                }
-                else
-                {
-                    b.GetComponentInChildren<Text>().text = "";
-                }
-            }
+			Debug.Log("Player hit the AI: " + numIds);
+			int left = mnumChoices;
+			PlayerMovement.Instance.SendMessage("togglePause");
+	        //Button[] t = GameObject.FindObjectsOfType(typeof(Button)) as Button[];
+	        GameObject[] gos = GameObject.FindGameObjectsWithTag("UserChoice");
+			foreach(GameObject o in gos)
+			{
+	            Button b = o.GetComponent<Button>();
+	            if (b != null)
+	            {
+	                if (left > 0)
+	                {
+	                    b.enabled = true;
+	                    b.image.enabled = true;
+	                    b.GetComponentInChildren<Text>().enabled = true;
+						foreach(string str in mtextIds.Keys)
+						{
+							if(mtextIds[str] == chosenId)
+							{
+								b.GetComponentInChildren<Text>().text = str;
+								Debug.Log(str);
+								string text = str;
+								b.onClick.AddListener(() => onButtonClick(text));
+								mtextIds.Remove(str);
+								left--;
+								break;
+							}
+						}
+
+		                cameraAnimator.SetBool("ZoomIn", true);
+					}
+	                else
+	                {
+	                    b.GetComponentInChildren<Text>().text = "";
+	                }
+	            }
+			}
+			if(mexplanation.Length > 0)
+			{
+				Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
+				t.text = mexplanation;
+				t.enabled = true;
+			}
+			//GameController.Instance.SendMessage("AddSanity");
 		}
-		//GameController.Instance.SendMessage("AddSanity");
 	}
 
 	void onButtonClick(string buttonName)
@@ -92,7 +126,9 @@ public class EnemyInteraction : MonoBehaviour
                 cameraAnimator.SetBool("ZoomIn", false);
             }
 		}
-
-
+		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
+		t.text = "";
+		t.enabled = false;
+		
 	}
 }
