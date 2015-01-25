@@ -137,7 +137,7 @@ public class EnemyInteraction : MonoBehaviour
             }
         }
 	
-        GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
+        //GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;
