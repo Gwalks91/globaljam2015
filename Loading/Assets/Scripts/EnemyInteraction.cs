@@ -6,8 +6,6 @@ public class EnemyInteraction : MonoBehaviour
 {
 	private int mnumChoices;
 	private List<string> mtexts;
-	private List<string> mexplanations;
-	private Dictionary<string, int> mexplaDict;
 	private Dictionary<string, int> mtextIds;
 	private Dictionary<string, int> mchoiceCost;
     private Dictionary<string, string> mchoiceImage;
@@ -24,12 +22,12 @@ public class EnemyInteraction : MonoBehaviour
 	public void init()
 	{
 		mtexts = new List<string>();
-		mexplanations = new List<string>();
-		mexplaDict = new Dictionary<string, int>();
 		mtextIds = new Dictionary<string, int>();
 		mchoiceCost = new Dictionary<string, int>();
 		mchoiceImage = new Dictionary<string, string>();
 		mexplanation = "";
+
+        GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 	}
 
 	public void setNumChoice(int numChoices)
@@ -37,10 +35,9 @@ public class EnemyInteraction : MonoBehaviour
 		mnumChoices = numChoices;
 	}
 
-	public void setExplanation(string explanation, int id)
+	public void setExplanation(string explanation)
 	{
-		mexplanations.Add(explanation);
-		mexplaDict.Add(explanation, id);
+		mexplanation = explanation;
 	}
 
 	public void setnumIds(int ids)
@@ -61,7 +58,6 @@ public class EnemyInteraction : MonoBehaviour
 	{
 		if(obj.gameObject.tag == "Player")
 		{
-			Random.seed = (Time.frameCount);
 			int chosenId = Random.Range(0, numIds-1);
 
 			Debug.Log("Player hit the AI: " + numIds);
@@ -101,18 +97,12 @@ public class EnemyInteraction : MonoBehaviour
 	                }
 	            }
 			}
-			foreach(string str in mexplaDict.Keys)
-			{
-				if(mexplaDict[str] == chosenId)
-				{
-					Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
-					t.resizeTextForBestFit = true;
-					t.resizeTextMaxSize = 7;
-					t.resizeTextMinSize = 4;
-					Debug.Log(str);
-					t.text = str;
-					t.enabled = true;
-				}
+			if(mexplanation.Length > 0)
+            {
+                GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = true;
+				Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
+				t.text = mexplanation;
+				t.enabled = true;
 			}
 			//GameController.Instance.SendMessage("AddSanity");
 		}
@@ -138,7 +128,8 @@ public class EnemyInteraction : MonoBehaviour
 
                 cameraAnimator.SetBool("ZoomIn", false);
             }
-		}
+        }
+        GameObject.FindGameObjectWithTag("ExplanationPanel").GetComponent<Image>().enabled = false;
 		Text t = GameObject.FindGameObjectWithTag("Explanation").GetComponent<Text>();
 		t.text = "";
 		t.enabled = false;
