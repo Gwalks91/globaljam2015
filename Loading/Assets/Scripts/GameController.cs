@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 	public SpriteRenderer backGround_sad;
 	public SpriteRenderer backGround_normal;
 	public SpriteRenderer backGround_happy;
+    public AudioClip newsSound;
 	public int maxRooms;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
@@ -73,7 +74,7 @@ public class GameController : MonoBehaviour
         //    b.GetComponentInChildren<Text>().enabled = false;
         //    //b.renderer.enabled = false;
         //}
-
+		GameObject.Find("bridge").renderer.enabled = false;
         inEndOfDay = false;
 	}
 	
@@ -81,7 +82,10 @@ public class GameController : MonoBehaviour
 	void Update () 
 	{
 		if (sanity <= 0)
+		{
 			Debug.Log ("End Game");//end the game 
+			Application.LoadLevel("GameOver");
+		}
 
         if (inEndOfDay)
         {
@@ -93,6 +97,58 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log("Message got here");
 		sanity += toChange;
+		Debug.Log("Sanity: " + sanity);
+	}
+
+	void changeRoom()
+	{
+		GameObject.Find("bridge").renderer.enabled = false;
+		if(currentRoomNum == maxRooms-1)
+		{
+			reset();
+		}
+		else
+		{
+			Debug.Log("Switching to room: " + currentRoomNum);
+			currentRoomNum++;
+			currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, "room" + currentRoomNum);
+			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+	}
+
+	void reset()
+	{
+		//Show end image
+
+		currentRoomNum = 0;
+		if(roomsLeft.Count > 0)
+		{
+			inEndOfDay = true;
+            audio.PlayOneShot(newsSound);
+			PlayerMovement.Instance.SendMessage("togglePause");
+			foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
+			{
+				Button b = o.GetComponent<Button>();
+				if (b != null)
+				{
+					b.enabled = true;
+					b.image.enabled = true;
+					b.onClick.AddListener(() => onEODButtonClick());
+				}
+			}
+
+			int activeRoom = Random.Range(0, roomsLeft.Count-1);
+			Debug.Log(activeRoom);
+			currentActiveRoomNum = roomsLeft[activeRoom];
+			roomsLeft.RemoveAt(activeRoom);
+			for(int i = 0; i<roomsLeft.Count; i++)
+				Debug.Log(roomsLeft[i]);
+			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
+		else
+		{
+			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
+		}
 		if(sanity > 5)
 		{
 			backGround_sad.renderer.enabled = false;
@@ -110,55 +166,6 @@ public class GameController : MonoBehaviour
 			backGround_sad.renderer.enabled = true;
 			backGround_normal.renderer.enabled = false;
 			backGround_happy.renderer.enabled = false;
-		}
-	}
-
-	void changeRoom()
-	{
-		if(currentRoomNum == maxRooms-1)
-		{
-			reset();
-		}
-		else
-		{
-			currentRoomNum++;
-			currentRoom.GetComponent<Room>().init(currentRoomNum == currentActiveRoomNum, "room" + currentRoomNum);
-			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-		}
-	}
-
-	void reset()
-	{
-		//Show end image
-
-		currentRoomNum = 0;
-		if(roomsLeft.Count > 0)
-		{
-			int activeRoom = Random.Range(0, roomsLeft.Count-1);
-			Debug.Log(activeRoom);
-			currentActiveRoomNum = roomsLeft[activeRoom];
-			roomsLeft.RemoveAt(activeRoom);
-			for(int i = 0; i<roomsLeft.Count; i++)
-				Debug.Log(roomsLeft[i]);
-
-            inEndOfDay = true;
-            PlayerMovement.Instance.SendMessage("togglePause");
-            foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
-            {
-                Button b = o.GetComponent<Button>();
-                if (b != null)
-                {
-                    b.enabled = true;
-                    b.image.enabled = true;
-                    b.onClick.AddListener(() => onEODButtonClick());
-                }
-            }
-
-			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
-		}
-		else
-		{
-			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 	}
 

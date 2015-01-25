@@ -8,13 +8,19 @@ public class Room : MonoBehaviour
 	public GameObject EndPoint;
 	public GameObject StartPoint;
 
-	public SpriteRenderer background;
+	public GameObject backgroundNorm;
+	public GameObject backgroundHappy;
+	public GameObject backgroundSad;
 
 	public string mRoomName;
 	private bool misActive;
 
 	public void init(bool isActive, string roomName)
 	{
+		if(roomName == "room1")
+		{
+			GameObject.Find("bridge").renderer.enabled = true;
+		}
 		//background = gameObject.AddComponent<SpriteRenderer>();
 		//background.sprite = (Sprite)Instantiate(Resources.Load("back1", typeof(Sprite)));
 		//backGround = (Image)GameObject.FindObjectOfType(typeof(Image));
@@ -63,7 +69,6 @@ public class Room : MonoBehaviour
 
 	public Vector3 getStartPos()
 	{
-		Debug.Log ("Start Pos: " + StartPoint.transform.position);
 		return StartPoint.transform.position;
 	}
 }
