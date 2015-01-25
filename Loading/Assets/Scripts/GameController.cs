@@ -11,7 +11,11 @@ public class GameController : MonoBehaviour
 	public SpriteRenderer backGround_normal;
 	public SpriteRenderer backGround_happy;
     public AudioClip newsSound;
-	public int maxRooms;
+    public AudioClip moodHappySound;
+    public AudioClip moodSadSound;
+    public int maxRooms;
+    private AudioSource newsSE;
+    private AudioSource BGM;
 	private int currentRoomNum;
 	private int currentActiveRoomNum;
 	private int sanity;
@@ -76,6 +80,19 @@ public class GameController : MonoBehaviour
         //}
 		GameObject.Find("bridge").renderer.enabled = false;
         inEndOfDay = false;
+
+        AudioSource[] ass = GetComponents<AudioSource>();
+
+        BGM = ass[0];
+        BGM.clip = moodHappySound;
+        BGM.loop = true;
+        BGM.playOnAwake = true;
+        BGM.Play();
+
+        newsSE = ass[1];
+        newsSE.clip = newsSound;
+        newsSE.loop = false;
+        newsSE.playOnAwake = false;
 	}
 	
 	// Update is called once per frame
@@ -125,7 +142,7 @@ public class GameController : MonoBehaviour
 		if(roomsLeft.Count > 0)
 		{
 			inEndOfDay = true;
-            audio.PlayOneShot(newsSound);
+            newsSE.PlayOneShot(newsSound);
 			PlayerMovement.Instance.SendMessage("togglePause");
 			foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
 			{
@@ -147,26 +164,54 @@ public class GameController : MonoBehaviour
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
 		else
-		{
+        {
+            // win screen because you survived all the events possible
+
+            inEndOfDay = true;
+            newsSE.PlayOneShot(newsSound);
+            PlayerMovement.Instance.SendMessage("togglePause");
+            foreach (GameObject o in GameObject.FindGameObjectsWithTag("EOD"))
+            {
+                Button b = o.GetComponent<Button>();
+                if (b != null)
+                {
+                    b.enabled = true;
+                    b.image.enabled = true;
+                    b.onClick.AddListener(() => onEODButtonClick());
+                }
+            }
 			player.transform.position = currentRoom.GetComponent<Room>().getStartPos();
 		}
+
 		if(sanity > 5)
 		{
 			backGround_sad.renderer.enabled = false;
 			backGround_normal.renderer.enabled = false;
 			backGround_happy.renderer.enabled = true;
+
+            BGM.Stop();
+            BGM.clip = moodHappySound;
+            BGM.Play();
 		}
 		else if(sanity <= 5 && sanity > 2)
-		{
+        {
 			backGround_sad.renderer.enabled = false;
 			backGround_normal.renderer.enabled = true;
 			backGround_happy.renderer.enabled = false;
+
+            BGM.Stop();
+            BGM.clip = moodHappySound;
+            BGM.Play();
 		}
 		else
-		{
+        {
 			backGround_sad.renderer.enabled = true;
 			backGround_normal.renderer.enabled = false;
 			backGround_happy.renderer.enabled = false;
+
+            BGM.Stop();
+            BGM.clip = moodSadSound;
+            BGM.Play();
 		}
 	}
 
